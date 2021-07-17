@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Posts from './components/posts/posts.component'
+import Users from './components/users/users.component'
+
+const GlobalStyles = createGlobalStyle`
+    * {
+      box-sizing: border-box;
+    }
+    html, body, #root {
+        margin: 0 auto;
+    }
+    body {
+        padding: 1rem;
+    }
+`
+
+const Wrapper = styled.div`
+  min-height: 100%;
+  display: flex;
+`
+
+class App extends React.Component {
+  render() {
+    return (
+      <Wrapper>
+        <GlobalStyles />
+        <Posts
+          name="Bryon"
+          email="bryon@smithauto.us"
+          dataSource="https://jsonplaceholder.typicode.com/posts/"
+        />
+        <Users dataSource="https://jsonplaceholder.typicode.com/users/" />
+      </Wrapper>
+    )
+  }
 }
-
-export default App;
+export default App
